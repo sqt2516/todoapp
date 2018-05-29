@@ -32,6 +32,11 @@ class TodosController < ApplicationController
         end
     end
 
+    def index
+        @todos = Todo.all
+    end
+
+
         def todo_params
             params.require(:todo).permit(:name, :description)
         end
