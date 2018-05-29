@@ -18,8 +18,19 @@ class TodosController < ApplicationController
         @todo = Todo.find(params[:id])
     end
 
+    def edit
+        @todo = Todo.find(params[:id])
+    end
 
-    private
+    def update
+        @todo = Todo.find(params[:id])
+        if @todo.update(todo_params)
+            flash[:notice] = "Todo was successfully updated!"
+            redirect_to todo_path(@todo)
+        else
+            render 'edit'
+        end
+    end
 
         def todo_params
             params.require(:todo).permit(:name, :description)
